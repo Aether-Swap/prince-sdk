@@ -1,0 +1,9 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts", "src/react/index.ts"],
+  "out": "docs/api",
+  "name": "@aether-swap/prince-sdk API Reference",
+  "readme": "README.md",
+  "excludePrivate": true,
+  "excludeInternal": true
+}

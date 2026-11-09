@@ -1,0 +1,89 @@
+{
+  "name": "@aether-swap/prince-sdk",
+  "version": "0.1.0",
+  "description": "Typed TypeScript client SDK for the Very-Prince PayoutRegistry Soroban smart contract on Stellar testnet.",
+  "author": "Alhaji-naira",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aether-Swap/prince-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aether-Swap/prince-sdk/issues"
+  },
+  "homepage": "https://github.com/Aether-Swap/prince-sdk#readme",
+  "keywords": [
+    "stellar",
+    "soroban",
+    "payouts",
+    "vesting",
+    "sdk",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src/ test/",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"test/**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"test/**/*.{ts,tsx}\"",
+    "docs": "typedoc"
+  },
+  "peerDependencies": {
+    "@stellar/freighter-api": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0",
+    "@stellar/stellar-sdk": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@stellar/freighter-api": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@stellar/freighter-api": "^6.0.0",
+    "@stellar/stellar-sdk": "^13.3.0",
+    "@testing-library/react": "^16.2.0",
+    "@types/node": "^22.13.9",
+    "@types/react": "^19.0.10",
+    "eslint": "^9.21.0",
+    "fast-check": "^3.23.2",
+    "happy-dom": "^17.1.8",
+    "prettier": "^3.5.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.4.0",
+    "typedoc": "^0.27.9",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "vitest": "^3.0.7"
+  }
+}

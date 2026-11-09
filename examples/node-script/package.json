@@ -1,0 +1,13 @@
+{
+  "name": "example-node-script",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --loader ts-node/esm index.ts"
+  },
+  "dependencies": {
+    "@aether-swap/prince-sdk": "file:../..",
+    "@stellar/stellar-sdk": "^13.3.0"
+  }
+}

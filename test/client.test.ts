@@ -1,17 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
-import {
-  Account,
-  Keypair,
-  nativeToScVal,
-  SorobanDataBuilder,
-  xdr,
-} from "@stellar/stellar-sdk";
+import { Account, Keypair, nativeToScVal, SorobanDataBuilder, xdr } from "@stellar/stellar-sdk";
 import { PayoutRegistryClient } from "../src/client.js";
 import { KeypairSigner } from "../src/signers.js";
-import {
-  OrgAlreadyRegisteredError,
-  TimeoutError,
-} from "../src/errors.js";
+import { OrgAlreadyRegisteredError, TimeoutError } from "../src/errors.js";
 
 const CONTRACT_ID = "CA3D5KRYM6CB7OWQ6TWYRR3Z4T7GNZLKERYNZGGA5SOAOPIFY6YQGAXE";
 const RPC_URL = "https://soroban-testnet.stellar.org";
@@ -46,9 +37,7 @@ describe("PayoutRegistryClient", () => {
           key: xdr.ScVal.scvSymbol("admins"),
           val: xdr.ScVal.scvVec([
             xdr.ScVal.scvAddress(
-              xdr.ScAddress.scAddressTypeAccount(
-                Keypair.random().xdrPublicKey(),
-              ),
+              xdr.ScAddress.scAddressTypeAccount(Keypair.random().xdrPublicKey()),
             ),
           ]),
         }),
@@ -119,9 +108,7 @@ describe("PayoutRegistryClient", () => {
         rpcUrl: RPC_URL,
       });
 
-      const signer = KeypairSigner.fromKeypair(
-        Keypair.fromRawEd25519Seed(Buffer.alloc(32, 2)),
-      );
+      const signer = KeypairSigner.fromKeypair(Keypair.fromRawEd25519Seed(Buffer.alloc(32, 2)));
       const signSpy = vi.spyOn(signer, "signTransaction");
 
       // Mock account response
@@ -153,9 +140,7 @@ describe("PayoutRegistryClient", () => {
         contractId: CONTRACT_ID,
         rpcUrl: RPC_URL,
       });
-      const signer = KeypairSigner.fromKeypair(
-        Keypair.fromRawEd25519Seed(Buffer.alloc(32, 2)),
-      );
+      const signer = KeypairSigner.fromKeypair(Keypair.fromRawEd25519Seed(Buffer.alloc(32, 2)));
 
       vi.spyOn(client.rpcServer, "getAccount").mockResolvedValue(
         new Account(await signer.publicKey(), "1"),
@@ -187,9 +172,9 @@ describe("PayoutRegistryClient", () => {
       const prepared = await client.claimPayout({ maintainer: await signer.publicKey() });
       const signed = await prepared.sign(signer);
 
-      await expect(
-        signed.send({ timeoutMs: 100, initialBackoffMs: 20 }),
-      ).rejects.toThrow(TimeoutError);
+      await expect(signed.send({ timeoutMs: 100, initialBackoffMs: 20 })).rejects.toThrow(
+        TimeoutError,
+      );
     });
   });
 

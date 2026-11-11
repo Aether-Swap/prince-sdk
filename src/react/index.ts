@@ -83,10 +83,7 @@ export interface UseClaimPayoutResult {
 /**
  * Hook to execute payout claims via a provided Signer.
  */
-export function useClaimPayout(
-  client: PayoutRegistryClient,
-  signer: Signer,
-): UseClaimPayoutResult {
+export function useClaimPayout(client: PayoutRegistryClient, signer: Signer): UseClaimPayoutResult {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
   const [result, setResult] = useState<SendResult<bigint> | null>(null);

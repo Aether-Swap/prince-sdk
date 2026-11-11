@@ -80,7 +80,9 @@ describe("Signers module", () => {
     it("throws NetworkMismatchError if network does not match expected passphrase", async () => {
       const mockApi = {
         isConnected: async () => ({ isConnected: true }),
-        getNetworkDetails: async () => ({ networkPassphrase: "Public Global Stellar Network ; September 2015" }),
+        getNetworkDetails: async () => ({
+          networkPassphrase: "Public Global Stellar Network ; September 2015",
+        }),
         signTransaction: async () => "signed-xdr",
       };
       const signer = new FreighterSigner({ freighterApi: mockApi });
@@ -112,7 +114,9 @@ describe("Signers module", () => {
         signTransaction: async () => ({ signedTxXdr: "AAAA_SIGNED_XDR" }),
       };
       const signer = new FreighterSigner({ freighterApi: mockApi });
-      const signed = await signer.signTransaction("AAAA_RAW_XDR", { networkPassphrase: testNetwork });
+      const signed = await signer.signTransaction("AAAA_RAW_XDR", {
+        networkPassphrase: testNetwork,
+      });
       expect(signed).toBe("AAAA_SIGNED_XDR");
     });
   });

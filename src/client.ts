@@ -203,9 +203,7 @@ export class PayoutRegistryClient {
    * Retrieves maintainer record by address.
    */
   async getMaintainer(address: string): Promise<Maintainer> {
-    const raw = await this.simulateCall<any>("get_maintainer", [
-      new Address(address).toScVal(),
-    ]);
+    const raw = await this.simulateCall<any>("get_maintainer", [new Address(address).toScVal()]);
     return {
       address: raw.address ?? address,
       orgId: raw.org_id ?? raw.orgId ?? "",
@@ -216,9 +214,7 @@ export class PayoutRegistryClient {
    * Lists all maintainer addresses registered under an organization.
    */
   async getMaintainers(orgId: string): Promise<string[]> {
-    const raw = await this.simulateCall<any[]>("get_maintainers", [
-      xdr.ScVal.scvSymbol(orgId),
-    ]);
+    const raw = await this.simulateCall<any[]>("get_maintainers", [xdr.ScVal.scvSymbol(orgId)]);
     return Array.isArray(raw) ? raw.map(String) : [];
   }
 
@@ -256,9 +252,7 @@ export class PayoutRegistryClient {
    * Queries the token balance of an address via SAC balance() wrapper.
    */
   async getTokenBalance(id: string): Promise<bigint> {
-    const raw = await this.simulateCall<any>("token_balance", [
-      new Address(id).toScVal(),
-    ]);
+    const raw = await this.simulateCall<any>("token_balance", [new Address(id).toScVal()]);
     return BigInt(raw ?? 0n);
   }
 
@@ -274,9 +268,7 @@ export class PayoutRegistryClient {
    * Returns the current replay-protection nonce for a caller.
    */
   async getNonce(caller: string): Promise<bigint> {
-    const raw = await this.simulateCall<any>("get_nonce", [
-      new Address(caller).toScVal(),
-    ]);
+    const raw = await this.simulateCall<any>("get_nonce", [new Address(caller).toScVal()]);
     return BigInt(raw ?? 0n);
   }
 

@@ -72,12 +72,12 @@ describe("Vesting module", () => {
     });
 
     it("rejects zero or negative amounts", () => {
-      expect(() =>
-        validateSchedule([{ unlockTimestamp: 100n, amount: 0n }]),
-      ).toThrow(InvalidAmountError);
-      expect(() =>
-        validateSchedule([{ unlockTimestamp: 100n, amount: -10n }]),
-      ).toThrow(InvalidAmountError);
+      expect(() => validateSchedule([{ unlockTimestamp: 100n, amount: 0n }])).toThrow(
+        InvalidAmountError,
+      );
+      expect(() => validateSchedule([{ unlockTimestamp: 100n, amount: -10n }])).toThrow(
+        InvalidAmountError,
+      );
     });
 
     it("rejects mismatched expected totals", () => {

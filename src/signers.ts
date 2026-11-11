@@ -5,11 +5,7 @@
  */
 
 import { Keypair, TransactionBuilder } from "@stellar/stellar-sdk";
-import {
-  FreighterNotInstalledError,
-  NetworkMismatchError,
-  UserRejectedError,
-} from "./errors.js";
+import { FreighterNotInstalledError, NetworkMismatchError, UserRejectedError } from "./errors.js";
 
 /**
  * Standard Signer interface.
@@ -108,7 +104,8 @@ export class FreighterSigner implements Signer {
     let connected = false;
     try {
       const connResult = await api.isConnected();
-      connected = typeof connResult === "object" ? Boolean(connResult.isConnected) : Boolean(connResult);
+      connected =
+        typeof connResult === "object" ? Boolean(connResult.isConnected) : Boolean(connResult);
     } catch (cause) {
       throw new FreighterNotInstalledError("Freighter extension is not installed or unreachable.", {
         cause,
@@ -156,7 +153,9 @@ export class FreighterSigner implements Signer {
     // Verify network if getNetworkDetails or getNetwork is available
     if (api.getNetworkDetails || api.getNetwork) {
       try {
-        const netInfo = api.getNetworkDetails ? await api.getNetworkDetails() : await api.getNetwork();
+        const netInfo = api.getNetworkDetails
+          ? await api.getNetworkDetails()
+          : await api.getNetwork();
         const activePassphrase = netInfo?.networkPassphrase ?? netInfo?.passphrase;
         if (activePassphrase && activePassphrase !== opts.networkPassphrase) {
           throw new NetworkMismatchError(opts.networkPassphrase, activePassphrase);

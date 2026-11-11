@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import fc from "fast-check";
 import { fromSmallestUnit, toSmallestUnit } from "../src/amounts.js";
-import { AmountConversionError, AmountExceedsLimitError, InvalidAmountError } from "../src/errors.js";
+import {
+  AmountConversionError,
+  AmountExceedsLimitError,
+  InvalidAmountError,
+} from "../src/errors.js";
 import { MAX_AMOUNT_LIMIT } from "../src/types.js";
 
 describe("Amounts module", () => {

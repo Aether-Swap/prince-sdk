@@ -12,7 +12,9 @@ import { AmountConversionError, AmountExceedsLimitError, InvalidAmountError } fr
  */
 function assertValidDecimals(decimals: number): void {
   if (!Number.isInteger(decimals) || decimals < 0 || decimals > 18) {
-    throw new AmountConversionError(`Invalid decimals value: ${decimals}. Must be integer between 0 and 18.`);
+    throw new AmountConversionError(
+      `Invalid decimals value: ${decimals}. Must be integer between 0 and 18.`,
+    );
   }
 }
 
@@ -84,7 +86,10 @@ export function toSmallestUnit(amount: string, decimals = DEFAULT_TOKEN_DECIMALS
  * @throws {InvalidAmountError} If amount is negative
  * @throws {AmountConversionError} If string input is malformed
  */
-export function fromSmallestUnit(stroops: bigint | string, decimals = DEFAULT_TOKEN_DECIMALS): string {
+export function fromSmallestUnit(
+  stroops: bigint | string,
+  decimals = DEFAULT_TOKEN_DECIMALS,
+): string {
   assertValidDecimals(decimals);
 
   let raw: bigint;

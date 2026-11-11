@@ -59,7 +59,11 @@ export class EmptyAdminListError extends ContractError {
 
 export class InvalidThresholdError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(3, "The native protocol admin config must contain exactly one admin with threshold 1.", options);
+    super(
+      3,
+      "The native protocol admin config must contain exactly one admin with threshold 1.",
+      options,
+    );
     this.name = "InvalidThresholdError";
   }
 }
@@ -115,14 +119,22 @@ export class InvalidAmountError extends ContractError {
 
 export class BudgetOverflowError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(11, "The organization total budget would exceed the maximum representable value.", options);
+    super(
+      11,
+      "The organization total budget would exceed the maximum representable value.",
+      options,
+    );
     this.name = "BudgetOverflowError";
   }
 }
 
 export class InsufficientBudgetError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(12, "The organization does not have enough remaining budget to cover the payout.", options);
+    super(
+      12,
+      "The organization does not have enough remaining budget to cover the payout.",
+      options,
+    );
     this.name = "InsufficientBudgetError";
   }
 }
@@ -136,21 +148,33 @@ export class MaxAdminLimitReachedError extends ContractError {
 
 export class AdminAlreadyExistsError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(14, "The address is already registered as an administrator for this organization.", options);
+    super(
+      14,
+      "The address is already registered as an administrator for this organization.",
+      options,
+    );
     this.name = "AdminAlreadyExistsError";
   }
 }
 
 export class CannotRemoveLastAdminError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(15, "Cannot remove the last administrator; an organization must have at least one.", options);
+    super(
+      15,
+      "Cannot remove the last administrator; an organization must have at least one.",
+      options,
+    );
     this.name = "CannotRemoveLastAdminError";
   }
 }
 
 export class NotAnAdminError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(16, "The address is not currently an administrator of the specified organization.", options);
+    super(
+      16,
+      "The address is not currently an administrator of the specified organization.",
+      options,
+    );
     this.name = "NotAnAdminError";
   }
 }
@@ -178,7 +202,11 @@ export class MaintainerOrgMismatchError extends ContractError {
 
 export class PayoutOverflowError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(20, "The maintainer total claimable balance would exceed the maximum representable value.", options);
+    super(
+      20,
+      "The maintainer total claimable balance would exceed the maximum representable value.",
+      options,
+    );
     this.name = "PayoutOverflowError";
   }
 }
@@ -276,14 +304,22 @@ export class DuplicateProjectError extends ContractError {
 
 export class InvalidNonceError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(34, "The provided nonce does not match the expected next nonce for this caller.", options);
+    super(
+      34,
+      "The provided nonce does not match the expected next nonce for this caller.",
+      options,
+    );
     this.name = "InvalidNonceError";
   }
 }
 
 export class InvalidBlsSignatureError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(35, "The BLS signature provided for the DAO approval is mathematically invalid.", options);
+    super(
+      35,
+      "The BLS signature provided for the DAO approval is mathematically invalid.",
+      options,
+    );
     this.name = "InvalidBlsSignatureError";
   }
 }
@@ -297,7 +333,11 @@ export class InvalidPoPError extends ContractError {
 
 export class TokenMetadataUnavailableError extends ContractError {
   constructor(options?: { cause?: unknown }) {
-    super(37, "Token metadata (name/symbol/decimals) could not be fetched during initialization.", options);
+    super(
+      37,
+      "Token metadata (name/symbol/decimals) could not be fetched during initialization.",
+      options,
+    );
     this.name = "TokenMetadataUnavailableError";
   }
 }
@@ -368,54 +408,55 @@ export class FlashLoanInsufficientLiquidityError extends ContractError {
 /**
  * Mapping from numeric contract error code to corresponding error class.
  */
-export const CONTRACT_ERROR_MAP: Record<number, new (opts?: { cause?: unknown }) => ContractError> = {
-  1: AlreadyInitializedError,
-  2: EmptyAdminListError,
-  3: InvalidThresholdError,
-  4: ContractNotInitializedError,
-  5: ProtocolPausedError,
-  6: InsufficientMultisigAuthError,
-  7: OrgAlreadyRegisteredError,
-  8: OrgNotFoundError,
-  9: NotAuthorizedError,
-  10: InvalidAmountError,
-  11: BudgetOverflowError,
-  12: InsufficientBudgetError,
-  13: MaxAdminLimitReachedError,
-  14: AdminAlreadyExistsError,
-  15: CannotRemoveLastAdminError,
-  16: NotAnAdminError,
-  17: MaintainerAlreadyRegisteredError,
-  18: MaintainerNotRegisteredError,
-  19: MaintainerOrgMismatchError,
-  20: PayoutOverflowError,
-  21: BatchSizeExceededError,
-  22: EmptyBatchError,
-  23: NoClaimableBalanceError,
-  24: PayoutLockedError,
-  25: NoPendingAdminError,
-  26: NotPendingAdminError,
-  27: AmountExceedsLimitError,
-  28: ReentrancyError,
-  29: HumanityVerificationRequiredError,
-  30: QuadraticOverflowError,
-  31: EmptyMatchingPoolError,
-  32: EmptyQuadraticRoundError,
-  33: DuplicateProjectError,
-  34: InvalidNonceError,
-  35: InvalidBlsSignatureError,
-  36: InvalidPoPError,
-  37: TokenMetadataUnavailableError,
-  38: FlashMintSupplyMismatchError,
-  39: InvalidListInsertionPointError,
-  40: ListNodeNotFoundError,
-  41: ListTraversalLimitExceededError,
-  42: RoundingOverflowError,
-  43: ZeroSharesMintedError,
-  44: InsufficientShareBalanceError,
-  45: FlashLoanRepaymentFailedError,
-  46: FlashLoanInsufficientLiquidityError,
-};
+export const CONTRACT_ERROR_MAP: Record<number, new (opts?: { cause?: unknown }) => ContractError> =
+  {
+    1: AlreadyInitializedError,
+    2: EmptyAdminListError,
+    3: InvalidThresholdError,
+    4: ContractNotInitializedError,
+    5: ProtocolPausedError,
+    6: InsufficientMultisigAuthError,
+    7: OrgAlreadyRegisteredError,
+    8: OrgNotFoundError,
+    9: NotAuthorizedError,
+    10: InvalidAmountError,
+    11: BudgetOverflowError,
+    12: InsufficientBudgetError,
+    13: MaxAdminLimitReachedError,
+    14: AdminAlreadyExistsError,
+    15: CannotRemoveLastAdminError,
+    16: NotAnAdminError,
+    17: MaintainerAlreadyRegisteredError,
+    18: MaintainerNotRegisteredError,
+    19: MaintainerOrgMismatchError,
+    20: PayoutOverflowError,
+    21: BatchSizeExceededError,
+    22: EmptyBatchError,
+    23: NoClaimableBalanceError,
+    24: PayoutLockedError,
+    25: NoPendingAdminError,
+    26: NotPendingAdminError,
+    27: AmountExceedsLimitError,
+    28: ReentrancyError,
+    29: HumanityVerificationRequiredError,
+    30: QuadraticOverflowError,
+    31: EmptyMatchingPoolError,
+    32: EmptyQuadraticRoundError,
+    33: DuplicateProjectError,
+    34: InvalidNonceError,
+    35: InvalidBlsSignatureError,
+    36: InvalidPoPError,
+    37: TokenMetadataUnavailableError,
+    38: FlashMintSupplyMismatchError,
+    39: InvalidListInsertionPointError,
+    40: ListNodeNotFoundError,
+    41: ListTraversalLimitExceededError,
+    42: RoundingOverflowError,
+    43: ZeroSharesMintedError,
+    44: InsufficientShareBalanceError,
+    45: FlashLoanRepaymentFailedError,
+    46: FlashLoanInsufficientLiquidityError,
+  };
 
 /**
  * Creates a typed ContractError instance for a given code.
@@ -462,7 +503,10 @@ export class RpcError extends PrinceSdkError {
  * Error raised when a wallet user explicitly rejects or cancels signing.
  */
 export class UserRejectedError extends PrinceSdkError {
-  constructor(message = "Transaction signing was rejected by user.", options?: { cause?: unknown }) {
+  constructor(
+    message = "Transaction signing was rejected by user.",
+    options?: { cause?: unknown },
+  ) {
     super(message, options);
     this.name = "UserRejectedError";
   }
@@ -476,10 +520,7 @@ export class NetworkMismatchError extends PrinceSdkError {
   readonly actual?: string;
 
   constructor(expected: string, actual?: string, options?: { cause?: unknown }) {
-    super(
-      `Network mismatch: expected "${expected}"${actual ? `, got "${actual}"` : ""}.`,
-      options,
-    );
+    super(`Network mismatch: expected "${expected}"${actual ? `, got "${actual}"` : ""}.`, options);
     this.name = "NetworkMismatchError";
     this.expected = expected;
     this.actual = actual;
@@ -490,7 +531,10 @@ export class NetworkMismatchError extends PrinceSdkError {
  * Error raised when the Freighter browser extension is not installed or available.
  */
 export class FreighterNotInstalledError extends PrinceSdkError {
-  constructor(message = "Freighter wallet extension is not installed or not detected in browser.", options?: { cause?: unknown }) {
+  constructor(
+    message = "Freighter wallet extension is not installed or not detected in browser.",
+    options?: { cause?: unknown },
+  ) {
     super(message, options);
     this.name = "FreighterNotInstalledError";
   }
@@ -546,7 +590,7 @@ export function extractContractErrorCode(err: unknown): number | null {
   }
 
   // Check string representation for Soroban host error patterns
-  const msg = typeof err === "string" ? err : (err as any).message ?? String(err);
+  const msg = typeof err === "string" ? err : ((err as any).message ?? String(err));
 
   // Pattern 1: Error(Contract, #10) or Error(Contract, 10)
   const pattern1 = /Error\(Contract,\s*#?(\d+)\)/i.exec(msg);

@@ -4,13 +4,7 @@
  * Implements prepare -> simulate -> sign -> send with exponential backoff polling.
  */
 
-import {
-  rpc,
-  scValToNative,
-  Transaction,
-  TransactionBuilder,
-  xdr,
-} from "@stellar/stellar-sdk";
+import { rpc, scValToNative, Transaction, TransactionBuilder, xdr } from "@stellar/stellar-sdk";
 import { Signer } from "./signers.js";
 import {
   extractContractErrorCode,
@@ -189,7 +183,8 @@ export class PreparedTx<T = any> {
       }
 
       if (txStatus.status === "FAILED") {
-        const errorDetail = (txStatus as any).resultXdr ?? (txStatus as any).resultMetaXdr ?? txStatus;
+        const errorDetail =
+          (txStatus as any).resultXdr ?? (txStatus as any).resultMetaXdr ?? txStatus;
         const code = extractContractErrorCode(errorDetail);
         if (code !== null) {
           throw getContractError(code, { cause: txStatus });
@@ -203,9 +198,12 @@ export class PreparedTx<T = any> {
       delay = Math.min(delay * backoffMultiplier, maxBackoffMs);
     }
 
-    throw new TimeoutError(`Transaction confirmation timed out after ${timeoutMs}ms for ${txHash}`, {
-      hash: txHash,
-    });
+    throw new TimeoutError(
+      `Transaction confirmation timed out after ${timeoutMs}ms for ${txHash}`,
+      {
+        hash: txHash,
+      },
+    );
   }
 
   /**
